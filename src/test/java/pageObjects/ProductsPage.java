@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import io.appium.java_client.pagefactory.AndroidFindBy;
+
 public class ProductsPage extends BasePage {
 
 	WebDriver driver;
@@ -14,8 +16,17 @@ public class ProductsPage extends BasePage {
 	}
 	
 	//locators
+	
+	@AndroidFindBy(uiAutomator = "new UiSelector().resourceId(\"com.androidsample.generalstore:id/toolbar_title\")")
+	WebElement productPageTitle;
+		
 	@FindBy(id = "com.androidsample.generalstore:id/appbar_btn_cart")
 	WebElement cartButton;
+	
+	
+	public String getProductPageTitle() {
+		return productPageTitle.getText();
+	}
 	
 	public void openCart() {
 		cartButton.click();

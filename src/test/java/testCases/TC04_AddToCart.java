@@ -9,7 +9,7 @@ import pageObjects.ShoppingCartPage;
 import testBase.BaseTestClass;
 import utilities.AppiumUtilities;
 
-public class TC03_AddToCart extends BaseTestClass{
+public class TC04_AddToCart extends BaseTestClass{
 	
 	String productName = "Jordan 6 Rings";
 	@Test
