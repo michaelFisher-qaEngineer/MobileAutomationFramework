@@ -80,5 +80,12 @@ public class LoginScreen extends BasePage {
 //		driver.findElement(AppiumBy.androidUIAutomator("new UiSelector().text(\"" + country + "\")")).click();
 
 	}
+	
+	public void selectCountry(WebDriver driver, String country) throws Exception {
+		countryDropdown.click();
+		AppiumUtilities.scrollAndroidElementIntoView(driver, country);
+		driver.findElement(AppiumBy.androidUIAutomator("new UiSelector().text(\"" + country + "\")")).click();
+
+	}
 
 }
