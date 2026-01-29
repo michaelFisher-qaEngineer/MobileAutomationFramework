@@ -1,10 +1,13 @@
 package pageObjects;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import io.appium.java_client.AppiumBy;
 import io.appium.java_client.pagefactory.AndroidFindBy;
+import utilities.AppiumUtilities;
 
 public class LoginScreen extends BasePage {
 
@@ -18,13 +21,10 @@ public class LoginScreen extends BasePage {
 	
 	//locators
 	
-//	@AndroidFindBy(id = "com.androidsample.generalstore:id/toolbar_title")
-//	WebElement pageTitle;
-	
 	@FindBy(xpath = "//android.widget.TextView[@resource-id=\"com.androidsample.generalstore:id/toolbar_title\"]")
 	WebElement pageTitle;
 	
-	@AndroidFindBy(id = "android:id/text1")
+	@FindBy(xpath="//android.widget.Spinner[@resource-id=\"com.androidsample.generalstore:id/spinnerCountry\"]")
 	WebElement countryDropdown;
 
 	@FindBy(xpath="//android.widget.TextView[@text=\\\"Your Name\\\"]")
@@ -72,6 +72,13 @@ public class LoginScreen extends BasePage {
 	
 	public void clickLetsShopButton() {
 		letsShopButton.click();
+	}
+	
+	public void openCountrySelector(String country) throws InterruptedException {
+		countryDropdown.click();
+//		AppiumUtilities.scrollAndroidElementIntoView(driver, country);
+//		driver.findElement(AppiumBy.androidUIAutomator("new UiSelector().text(\"" + country + "\")")).click();
+
 	}
 
 }
