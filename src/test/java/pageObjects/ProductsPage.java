@@ -6,33 +6,34 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import io.appium.java_client.pagefactory.AndroidFindBy;
+import utilities.AppiumUtilities;
 
 public class ProductsPage extends BasePage {
 
 	WebDriver driver;
-	
+
 	public ProductsPage(WebDriver driver) {
 		super(driver);
 	}
-	
-	//locators
-	
+
+	// locators
+
 	@AndroidFindBy(uiAutomator = "new UiSelector().resourceId(\"com.androidsample.generalstore:id/toolbar_title\")")
 	WebElement productPageTitle;
-		
+
 	@FindBy(id = "com.androidsample.generalstore:id/appbar_btn_cart")
 	WebElement cartButton;
-	
-	
+
 	public String getProductPageTitle() {
 		return productPageTitle.getText();
 	}
-	
+
 	public void openCart() {
 		cartButton.click();
 	}
-	
-	public void addProductToCart(WebDriver driver, String productToSelect) {
+
+	public void addProductToCart(WebDriver driver, String productToSelect) throws InterruptedException {
+		AppiumUtilities.scrollAndroidElementIntoView(driver, productToSelect);
 		int productOnScreenCount = driver.findElements(By.id("com.androidsample.generalstore:id/productName")).size();
 		for (int i = 0; i < productOnScreenCount; i++) {
 			String productName = driver.findElements(By.id("com.androidsample.generalstore:id/productName")).get(i)
@@ -42,5 +43,5 @@ public class ProductsPage extends BasePage {
 			}
 		}
 	}
-	
+
 }
