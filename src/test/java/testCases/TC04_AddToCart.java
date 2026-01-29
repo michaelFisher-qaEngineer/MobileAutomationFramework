@@ -7,7 +7,6 @@ import pageObjects.LoginScreen;
 import pageObjects.ProductsPage;
 import pageObjects.ShoppingCartPage;
 import testBase.BaseTestClass;
-import utilities.AppiumUtilities;
 
 public class TC04_AddToCart extends BaseTestClass{
 	
@@ -21,7 +20,6 @@ public class TC04_AddToCart extends BaseTestClass{
 		lp.clickLetsShopButton();
 		
 		ProductsPage prod = new ProductsPage(getDriver());
-		AppiumUtilities.scrollAndroidElementIntoView(getDriver(), productName);
 		prod.addProductToCart(getDriver(), productName);
 		prod.openCart();
 		
