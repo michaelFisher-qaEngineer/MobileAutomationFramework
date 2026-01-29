@@ -43,6 +43,9 @@ public class BaseTestClass {
 		options.setAutomationName("UiAutomator2");
 		options.setDeviceName("emulator-5554");
 		options.setApp(System.getProperty("user.dir") + "/src/test/resources/General-Store.apk");
+		options.setCapability("chromedriverExecutable",
+		        System.getProperty("user.dir") + "/src/test/resources/chromedriver");
+
 		driver = new AndroidDriver(
                 new URI(properties.getProperty("appUrl")).toURL(),
                 options
