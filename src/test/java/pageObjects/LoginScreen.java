@@ -1,5 +1,7 @@
 package pageObjects;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,12 +12,12 @@ import utilities.AppiumUtilities;
 
 public class LoginScreen extends BasePage {
 
-	WebDriver driver;
+	private static final Logger log = LogManager.getLogger(LoginScreen.class);
 
 	// constructor
 	public LoginScreen(WebDriver driver) {
 		super(driver);
-
+		log.debug("LoginScreen initialized");
 	}
 
 	// locators
@@ -39,48 +41,69 @@ public class LoginScreen extends BasePage {
 
 	@AndroidFindBy(id = "com.androidsample.generalstore:id/btnLetsShop")
 	WebElement letsShopButton;
-	
+
 	@FindBy(xpath = "(//android.widget.Toast)[1]")
 	WebElement toastMessage;
 
-	// actions
+	// ===== Actions with Logging =====
+
 	public String getPageTitle() {
-		return pageTitle.getText();
+		String title = pageTitle.getText();
+		log.debug("Fetched page title: {}", title);
+		return title;
 	}
 
 	public String getNameLabel() {
-		return yourNameLabel.getText();
+		String label = yourNameLabel.getText();
+		log.debug("Fetched name label text: {}", label);
+		return label;
 	}
 
 	public void enterName(String name) {
+		log.debug("Entering name into text box: {}", name);
+		nameTextBox.clear();
 		nameTextBox.sendKeys(name);
 	}
 
 	public void selectRadioButton(String gender) throws Exception {
+		log.debug("Selecting gender radio button: {}", gender);
+
 		switch (gender.toLowerCase()) {
 		case "male":
 			maleRadioButton.click();
+			log.debug("Male radio button selected");
 			break;
+
 		case "female":
 			femaleRadioButton.click();
+			log.debug("Female radio button selected");
 			break;
+
 		default:
+			log.error("Invalid gender provided: {}", gender);
 			throw new Exception("Only male or female allowed for this selection.");
 		}
 	}
 
 	public void clickLetsShopButton() {
+		log.debug("Clicking 'Let's Shop' button");
 		letsShopButton.click();
 	}
 
 	public void selectCountry(WebDriver driver, String country) throws Exception {
+		log.debug("Opening country dropdown");
 		countryDropdown.click();
+
+		log.debug("Scrolling to country: {}", country);
 		AppiumUtilities.scrollAndroidElementIntoView(driver, country);
+
+		log.debug("Selecting country from list: {}", country);
 		driver.findElement(AppiumBy.androidUIAutomator("new UiSelector().text(\"" + country + "\")")).click();
 	}
-	
-	public String getToastMessage() {
-		return toastMessage.getText();
-	}
 
+	public String getToastMessage() {
+		String toast = toastMessage.getText();
+		log.debug("Captured toast message: {}", toast);
+		return toast;
+	}
 }
