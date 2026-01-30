@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+
+    <Appenders>
+
+        <!-- ===== Console Appender ===== -->
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+
+        <!-- ===== File Appender (Rolling Logs) ===== -->
+        <RollingFile name="FileLogger"
+                     fileName="logs/framework.log"
+                     filePattern="logs/framework-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout>
+                <pattern>%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n</pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="5 MB"/>
+            </Policies>
+        </RollingFile>
+
+    </Appenders>
+
+    <Loggers>
+
+        <!-- Framework / Your Code Logging Level -->
+        <Logger name="com.yourpackage" level="debug" additivity="false">
+        
+<!-- enable this & disable above to turn off page-object console logging:         
+		<Logger name="your.package.name" level="info" additivity="false">  -->
+
+	<!-- disable 'console' to turn of console debugging-->
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="FileLogger"/>
+        </Logger>
+
+        <!-- Root Logger (catches everything else) -->
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="FileLogger"/>
+        </Root>
+
+    </Loggers>
+
+</Configuration>
