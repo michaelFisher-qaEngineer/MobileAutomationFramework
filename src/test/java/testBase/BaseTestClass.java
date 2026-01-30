@@ -21,7 +21,7 @@ import java.util.Properties;
 
 import org.apache.logging.log4j.LogManager;
 
-@Listeners(utilities.ExtentReportManager.class)
+@Listeners(listeners.ExtentReportManager.class)
 public class BaseTestClass {
 	private static final Logger log = LogManager.getLogger(BaseTestClass.class);
 	
