@@ -10,7 +10,6 @@ import utilities.AppiumUtilities;
 
 public class ShoppingCartPage extends BasePage {
 	private static final Logger log = LogManager.getLogger(ShoppingCartPage.class);
-//	WebDriver driver;
 	
 	public ShoppingCartPage(WebDriver driver) {
 		super(driver);
@@ -40,10 +39,9 @@ public class ShoppingCartPage extends BasePage {
 		return name;
 	}
 
-	public void checkSendEmailsCheckbox() throws Exception {
+	public void checkSendEmailsCheckbox() {
 		if (sendEmailsCheckbox.getAttribute("checked").equalsIgnoreCase("checked")) {
 			log.debug("Send emails checkbox already checked");
-			return;
 		} else {
 			log.info("Clicking send emails checkbox");
 			sendEmailsCheckbox.click();
