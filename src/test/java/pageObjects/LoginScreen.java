@@ -39,6 +39,9 @@ public class LoginScreen extends BasePage {
 
 	@AndroidFindBy(id = "com.androidsample.generalstore:id/btnLetsShop")
 	WebElement letsShopButton;
+	
+	@FindBy(xpath = "(//android.widget.Toast)[1]")
+	WebElement toastMessage;
 
 	// actions
 	public String getPageTitle() {
@@ -74,6 +77,10 @@ public class LoginScreen extends BasePage {
 		countryDropdown.click();
 		AppiumUtilities.scrollAndroidElementIntoView(driver, country);
 		driver.findElement(AppiumBy.androidUIAutomator("new UiSelector().text(\"" + country + "\")")).click();
+	}
+	
+	public String getToastMessage() {
+		return toastMessage.getText();
 	}
 
 }
