@@ -14,7 +14,6 @@ import utilities.AppiumUtilities;
 
 public class WebviewPage extends BasePage {
 	private static final Logger log = LogManager.getLogger(WebviewPage.class);
-//	WebDriver driver;
 	
 	public WebviewPage(WebDriver driver) {
 		super(driver);
@@ -27,8 +26,9 @@ public class WebviewPage extends BasePage {
 	
 	
 	public void switchToWebviewContext(WebDriver driver) {
-        log.debug("Waiting for WEBVIEW context to be available...");
+        log.info("Waiting for WEBVIEW context to be available...");
 		AppiumUtilities.waitForContext(driver, "WEBVIEW_com.androidsample.generalstore");
+		
 		SupportsContextSwitching ctxDriver = (SupportsContextSwitching) driver;
 		Set<String> contexts = ctxDriver.getContextHandles();
         log.debug("Available contexts: {}", contexts);
@@ -38,14 +38,13 @@ public class WebviewPage extends BasePage {
 	}
 	
 	public void switchToNativeContext(WebDriver driver) {
-        log.debug("Switching back to NATIVE_APP context...");
+        log.info("Switching back to NATIVE_APP context...");
 		SupportsContextSwitching ctxDriver = (SupportsContextSwitching) driver;
 		Set<String> contexts = ctxDriver.getContextHandles();
         log.debug("Available contexts before switching: {}", contexts);
         
 		AppiumUtilities.waitForContext(driver, "NATIVE_APP");
 		AppiumUtilities.switchContexts(driver, contexts, "NATIVE_APP");
-
         log.debug("Switched to NATIVE_APP context successfully");
 	}
 	
@@ -53,7 +52,6 @@ public class WebviewPage extends BasePage {
 		log.info("Performing search in webview");
 		switchToWebviewContext(driver);
 		
-
         log.debug("Clicking search box");
 		searchBox.click();
 		
@@ -66,7 +64,7 @@ public class WebviewPage extends BasePage {
 	
 
 	public void goBack(WebDriver driver) {
-        log.debug("Pressing device back button to exit webview");
+        log.info("Pressing device back button to exit webview");
 		AppiumUtilities.pressBackButton(driver);
 	}
 }
