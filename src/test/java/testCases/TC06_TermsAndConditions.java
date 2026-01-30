@@ -23,7 +23,7 @@ public class TC06_TermsAndConditions extends BaseTestClass {
 		ProductsPage prod = new ProductsPage(getDriver());
 		prod.addProductToCart(getDriver(), productName);
 		prod.openCart();
-		
+
 		ShoppingCartPage cart = new ShoppingCartPage(getDriver());
 		cart.longPressTermsButton(getDriver());
 		Assert.assertEquals(cart.getAlertTitle(getDriver()), "Terms Of Conditions");
