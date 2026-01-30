@@ -4,6 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import utilities.AppiumUtilities;
+
 public class ShoppingCartPage extends BasePage {
 	WebDriver driver;
 
@@ -20,6 +22,12 @@ public class ShoppingCartPage extends BasePage {
 
 	@FindBy(id = "com.androidsample.generalstore:id/productName")
 	WebElement productNameInCart;
+	
+	@FindBy(id = "com.androidsample.generalstore:id/termsButton")
+	WebElement termsButton;
+	
+	@FindBy(id = "com.androidsample.generalstore:id/alertTitle")
+	WebElement termsAlertTitle;
 
 	public String getProductNameInCart() {
 		return productNameInCart.getText();
@@ -35,6 +43,14 @@ public class ShoppingCartPage extends BasePage {
 	
 	public void clickCompletePurchaseButton() {
 		completePurchaseButton.click();
+	}
+	
+	public void longPressTermsButton(WebDriver driver) {
+		AppiumUtilities.androidLongPress(driver, termsButton);
+	}
+	
+	public String getAlertTitle(WebDriver driver) {
+		return termsAlertTitle.getText();
 	}
 
 }

@@ -19,7 +19,6 @@ public class LoginScreen extends BasePage {
 	}
 
 	// locators
-
 	@FindBy(xpath = "//android.widget.TextView[@resource-id=\"com.androidsample.generalstore:id/toolbar_title\"]")
 	WebElement pageTitle;
 
@@ -42,7 +41,6 @@ public class LoginScreen extends BasePage {
 	WebElement letsShopButton;
 
 	// actions
-
 	public String getPageTitle() {
 		return pageTitle.getText();
 	}
