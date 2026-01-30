@@ -12,7 +12,5 @@ public class TC01_LaunchApp extends BaseTestClass {
 	void testLaunchApp() {
 		LoginScreen lp = new LoginScreen(getDriver());
 		Assert.assertEquals(lp.getPageTitle(), "General Store");
-
-	}
-	
+	}	
 }
