@@ -5,6 +5,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
@@ -20,9 +21,9 @@ import java.util.Properties;
 
 import org.apache.logging.log4j.LogManager;
 
+@Listeners(utilities.ExtentReportManager.class)
 public class BaseTestClass {
 	private static final Logger log = LogManager.getLogger(BaseTestClass.class);
-//	public static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 	
 	public static WebDriver driver;
 	
@@ -59,7 +60,7 @@ public class BaseTestClass {
         log.info("============== Android Driver started successfully ==============");	
 	}
 	
-	public String captureScreen(String tname) {
+	public static String captureScreen(String tname) {
 		log.info("Capturing screenshot for test: {}", tname);
 		String targetFilePath = "";
 		try {
