@@ -12,7 +12,7 @@
       <class name="testCases.TC04_AddToCart"/>
       <class name="testCases.TC05_CompletePurchase"/>
       <class name="testCases.TC02_ShopSelectingCountry"/>
-      <class name="testCases.TC06_ValidateToastMessage"/>
+      <class name="testCases.TC07_ValidateToastMessage"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
