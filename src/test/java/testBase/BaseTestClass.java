@@ -1,23 +1,29 @@
 package testBase;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URI;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.Date;
 import java.util.Properties;
 
 import org.apache.logging.log4j.LogManager;
 
+@Listeners(listeners.ExtentReportManager.class)
 public class BaseTestClass {
 	private static final Logger log = LogManager.getLogger(BaseTestClass.class);
-//	public static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 	
 	public static WebDriver driver;
 	
@@ -51,9 +57,25 @@ public class BaseTestClass {
                 options
         );
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        log.info("============== Android Driver started successfully ==============");
-		
+        log.info("============== Android Driver started successfully ==============");	
 	}
+	
+	public static String captureScreen(String tname) {
+		log.info("Capturing screenshot for test: {}", tname);
+		String targetFilePath = "";
+		try {
+			String timeStamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+			File sourceFile = ((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.FILE);
+			targetFilePath = System.getProperty("user.dir") + "/screenshots/" + tname + "_" + timeStamp + ".png";
+			File targetFile = new File(targetFilePath);
+			sourceFile.renameTo(targetFile);
+			log.debug("Screenshot saved at: {}", targetFilePath);
+		} catch (Exception e) {
+			log.error("Failed to capture screenshot for test: {}", tname, e);
+		}
+		return targetFilePath;
+	}
+	
 	
 	@AfterClass
 	public void closeApp() {
