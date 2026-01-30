@@ -8,8 +8,8 @@ import org.testng.annotations.Test;
 import pageObjects.LoginScreen;
 import testBase.BaseTestClass;
 
-public class TC06_ValidateToastMessage extends BaseTestClass {
-	private static final Logger log = LogManager.getLogger(TC06_ValidateToastMessage.class);
+public class TC07_ValidateToastMessage extends BaseTestClass {
+	private static final Logger log = LogManager.getLogger(TC07_ValidateToastMessage.class);
 
 	@Test
 	public void validateToastMessageTest() throws Exception {
