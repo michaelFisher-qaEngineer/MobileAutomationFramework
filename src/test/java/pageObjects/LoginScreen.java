@@ -14,12 +14,9 @@ public class LoginScreen extends BasePage {
 
 	private static final Logger log = LogManager.getLogger(LoginScreen.class);
 
-//	WebDriver driver;
-
 	// constructor
 	public LoginScreen(WebDriver driver) {
 		super(driver);
-		this.driver = driver;
 		log.debug("LoginScreen initialized");
 	}
 
