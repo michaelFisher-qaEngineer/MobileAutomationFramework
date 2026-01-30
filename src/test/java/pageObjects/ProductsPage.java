@@ -14,7 +14,6 @@ import utilities.AppiumUtilities;
 
 public class ProductsPage extends BasePage {
 	private static final Logger log = LogManager.getLogger(ProductsPage.class);
-//	WebDriver driver;
 	
 	public ProductsPage(WebDriver driver) {
 		super(driver);
@@ -22,7 +21,6 @@ public class ProductsPage extends BasePage {
 	}
 
 	// locators
-
 	@AndroidFindBy(uiAutomator = "new UiSelector().resourceId(\"com.androidsample.generalstore:id/toolbar_title\")")
 	WebElement productPageTitle;
 
@@ -38,11 +36,11 @@ public class ProductsPage extends BasePage {
 	public void openCart() {
 		log.debug("Clicking cart button");
 		cartButton.click();
-		log.info("Cart button clicked");
+		log.debug("Cart button clicked");
 	}
 
 	public void addProductToCart(WebDriver driver, String productToSelect) throws InterruptedException {
-	    log.info("Attempting to add product '{}' to cart", productToSelect);
+	    log.debug("Attempting to add product '{}' to cart", productToSelect);
 
 		AppiumUtilities.scrollAndroidElementIntoView(driver, productToSelect);
 	    log.debug("Scrolled into view: {}", productToSelect);
